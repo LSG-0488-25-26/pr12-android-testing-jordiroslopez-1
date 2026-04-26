@@ -220,7 +220,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 label = { Text("Buscar...") },
                 modifier = Modifier
             )
-            Button(onClick = { /* myViewModel.performSearch() */ }) {
+            Button(onClick = { myViewModel.performSearch() }) {
                 Text("Buscar")
             }
 

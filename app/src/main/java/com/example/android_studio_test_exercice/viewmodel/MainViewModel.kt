@@ -132,7 +132,11 @@ class MainViewModel: ViewModel {
     }
 
     fun setSelectedItem(option: String) {
-        this._selectedOption.value = option
+        this._selectedItem.value = option
+    }
+
+    fun performSearch() {
+        this._showSnackbar.value = true
     }
 
     fun setSearchText(it: String) {
