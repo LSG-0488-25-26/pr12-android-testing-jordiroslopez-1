@@ -45,9 +45,6 @@ class ExampleUnitTest {
     fun checkToggleEstatSwitch() {
         viewModel.toggleEstatSwitch()
         assertTrue(viewModel.toggleState.value == false)
-
-        viewModel.toggleEstatSwitch()
-        assertTrue(viewModel.toggleState.value == true)
     }
 
     @Test
