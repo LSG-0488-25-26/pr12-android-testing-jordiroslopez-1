@@ -31,6 +31,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -77,7 +79,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 Switch(
                     checked = estatSwitch,
                     onCheckedChange = { myViewModel.toggleEstatSwitch() },
-                    modifier = Modifier.fillMaxWidth(0.4f),
+                    modifier = Modifier.fillMaxWidth(0.4f).testTag("switchState_id"),
                     enabled = true,
                     colors = SwitchDefaults.colors(
                         uncheckedThumbColor = Color.LightGray,
@@ -122,7 +124,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Checkbox(
                         checked = esCarnivor,
                         onCheckedChange = { myViewModel.toggleEsCarnivor() },
-                        modifier = Modifier.fillMaxWidth(0.20f),
+                        modifier = Modifier.fillMaxWidth(0.20f).testTag("checkCarnivor_id"),
                         enabled = true,
                         colors = CheckboxDefaults.colors(
                             uncheckedColor = Color.LightGray,
@@ -132,7 +134,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Checkbox(
                         checked = esVegetaria,
                         onCheckedChange = { myViewModel.toggleEsVegetaria() },
-                        modifier = Modifier.fillMaxWidth(0.33f),
+                        modifier = Modifier.fillMaxWidth(0.33f).testTag("checkVegetaria_id"),
                         enabled = true,
                         colors = CheckboxDefaults.colors(
                             uncheckedColor = Color.LightGray,
@@ -142,7 +144,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     Checkbox(
                         checked = esVega,
                         onCheckedChange = { myViewModel.toggleEsVega() },
-                        modifier = Modifier.fillMaxWidth(0.33f),
+                        modifier = Modifier.fillMaxWidth(0.33f).testTag("checkVega_id"),
                         enabled = true,
                         colors = CheckboxDefaults.colors(
                             uncheckedColor = Color.LightGray,
@@ -153,7 +155,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
             }
 
             Column(modifier = Modifier.fillMaxWidth()) {
-                Text("TriState", Modifier.fillMaxWidth(), fontSize = 20.sp)
+                Text("TriState", Modifier.fillMaxWidth().testTag("triState_id"), fontSize = 20.sp)
                 TriStateCheckbox(
                     state = triStateStatus,
                     onClick = { myViewModel.toggleTriStateStatus() }
@@ -171,6 +173,7 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 listOf("Vinicius", "Lamine Yamal", "Raphina").forEach { player ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         RadioButton(
+                            modifier = Modifier.testTag("pilotaDOr_id"),
                             selected = selectedOption == player,
                             onClick = { myViewModel.setSelectedOption(player = player) },
                             enabled = player != "Vinicius", // Deshabilitat
@@ -188,7 +191,8 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
             Slider(
                 value = sliderValue,
                 onValueChange = { myViewModel.setSliderValue(it = it) },
-                valueRange = 0f..100f
+                valueRange = 0f..100f,
+                modifier = Modifier.testTag("sliderValue_id")
             )
 
             Box(modifier = Modifier.wrapContentSize()) {
@@ -206,7 +210,8 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                             onClick = {
                                 myViewModel.setSelectedItem(option)
                                 myViewModel.setExpanded(false)
-                            }
+                            },
+                            modifier = Modifier.testTag("opcion_id")
                         )
                     }
                 }
@@ -218,9 +223,12 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                     myViewModel.setSearchText(it = it)
                 },
                 label = { Text("Buscar...") },
-                modifier = Modifier
+                modifier = Modifier.testTag("searchText_id")
             )
-            Button(onClick = { myViewModel.performSearch() }) {
+            Button(
+                onClick = { myViewModel.performSearch() },
+                modifier = Modifier.testTag("searchButton_id")
+            ) {
                 Text("Buscar")
             }
 
@@ -235,7 +243,8 @@ fun MainView(myViewModel: MainViewModel, modifier: Modifier = Modifier) {
                 onClick = { myViewModel.toggle() },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (toggleState) Color.Green else Color.Red
-                )
+                ),
+                modifier = Modifier.testTag("activateButton_id")
             ) {
                 Text(if (toggleState) "Activat" else "Desactivat")
             }

@@ -40,6 +40,11 @@ android {
 }
 
 dependencies {
+    debugImplementation("androidx.compose.ui:ui-tooling" )
+    debugImplementation("androidx.compose.ui:ui-test-manifest" )
+    androidTestImplementation("androidx.test. espresso:espresso -core")
+    androidTestImplementation("androidx.test.ext:junit" )
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4" )
     testImplementation("androidx.arch.core:core-testing:2.2.0" )
     implementation(platform("androidx.compose:compose-bom:2024.04.01" ))
     implementation(libs.androidx.core.ktx)
