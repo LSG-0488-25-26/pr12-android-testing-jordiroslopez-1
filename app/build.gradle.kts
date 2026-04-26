@@ -40,7 +40,8 @@ android {
 }
 
 dependencies {
-
+    testImplementation("androidx.arch.core:core-testing:2.2.0" )
+    implementation(platform("androidx.compose:compose-bom:2024.04.01" ))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
